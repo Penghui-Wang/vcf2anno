@@ -1,0 +1,6 @@
+*.pyc
+*.swap
+vcf2anno/config.py
+*.log
+tests/*
+!tests/*.py
