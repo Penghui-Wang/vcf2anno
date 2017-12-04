@@ -1,5 +1,0 @@
-# python
-
-
-def mergeFile():
-    pass
