@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+#coding: utf-8
 
 class InfoVCF(object):
 	def __init__(self,vcf,prefix):
@@ -8,7 +8,9 @@ class InfoVCF(object):
 	def get_vcf_info(self):
 		lines = open(self.vcf).readlines()
 		out = self.prefix + ".vars.info"
+		avi = self.prefix + ".avi"
 		fho = open(out,'w')
+		fha = open(avi,'w')
 		head = "\t".join(['Chr','Start','End','Ref','Alt','Read1','Read2','VarFreq','Strand1','Strand2','Qual','Qual1','Qual2','Pvalue','MapQual1','MapQual2','Read1plus','Read1minus','Read2plus','Read2minus','Zygosity','Cons','VarType','Depth']) + "\n"
 		fho.write(head)
 		for line in lines:
@@ -16,17 +18,11 @@ class InfoVCF(object):
 			if line.startswith("#"):
 				continue
 			items = line.split('\t')
-			chrom = items[0]
-			start = items[1]
-			ref = items[3]
+			chrom, start, ref, alt = items[0], items[1], items[3], items[4]
 			end = str(int(start)+len(ref)-1)
-			alt = items[4]
-			qual = items[5]
-			infostr = items[7]
-			formatstr = items[8]
-			samplestr = items[9]
+			qual, infostr, formatstr, samplestr = items[5], items[7],items[8],items[9]
 			info_dict = self.get_format_info(infostr,formatstr,samplestr)
-			vartype = self.getVartype(ref,alt,info_dict)
+			vartype = self.getVartype(ref,alt)
 			reads1 = self.getReads1(info_dict)
 			reads2 = self.getReads2(info_dict)
 			dep = self.getDepth(info_dict)
@@ -44,11 +40,12 @@ class InfoVCF(object):
 			pvalue = self.getPvalue(info_dict)
 			mapq1 = self.getMapqual1(info_dict)
 			mapq2 = self.getMapqual2(info_dict)
-			#print reads1,reads2,varfreq
+			
 			outline = "\t".join([chrom,start,end,ref,alt,reads1,reads2,varfreq,strand1,strand2,qual,qual1,qual2,pvalue,mapq1,mapq2,r1plus,r1minus,r2plus,r2minus,genotype,cons,vartype,dep]) + "\n"
 			fho.write(outline)
-		
-			#print r1plus,r1minus,r2plus,r2minus,strand1,strand2
+			aviline = "\t".join([chrom,start,end,ref,alt]) + "\n"
+			fha.write(aviline)
+			
 			
 		fho.close()
 
@@ -71,18 +68,25 @@ class InfoVCF(object):
 		cons = ''
 		return cons
  
-	def getVartype(self,ref,allele,info_dict):
-		vartype = ''
-		vartypename = ['TYPE']
-		for key in vartypename:
-			if key in info_dict:
-				vartype = info_dict[key]
-				break
-			elif ref == '-' or allele == '-' or len(ref) != len(allele):
-				vartype = "indel"
-			else:
+	def getVartype(self,ref,alt):
+		if ref == '-':
+			vartype = "ins"
+		elif len(ref) == 1:
+			if alt == '-':
+				vartype = "del"
+			elif len(alt) == 1:
 				vartype = "snp"
+			else:
+				vartype = "sub"
+		else:
+			if alt == '-':
+				vartype = "del"
+			elif len(ref) == len(alt):
+				vartype = "mnp"
+			else:
+				vartype = "sub"
 		return vartype
+
 
 	def getReads1(self,info_dict):
 		read1 = ''
@@ -164,45 +168,31 @@ class InfoVCF(object):
 				read2minus = info_dict[key]
 				break
 		return read2minus
-	def getStrand1(self,read1plus,read2plus):#去除存在，的情况
+
+
+	def getStrand1(self,read1plus,read2plus):
 		strand1 = ''
-		if "," in read1plus or read2plus:
-			pass
 		if read1plus and read2plus:
-			r1p = int(read1plus)
-			r2p = int(read2plus)
-			strand1 = str(r1p + r2p)
+			if "," in read1plus or "," in read2plus:
+				pass
+			else:
+				r1p = int(read1plus)
+				r2p = int(read2plus)
+				strand1 = str(r1p + r2p)
+		
 		return strand1
 
-	'''
-	def getStrand1(self,read1plus,read2plus):#有，存在，取前一个值
-		strand1 = ''
-		if read1plus and read2plus :
-			r1p = int(read1plus.split(",")[0])
-			r2p = int(read2plus.split(",")[0])
-			strand1 = str(r1p + r2p)
-		return strand1
-	'''
-	
+
 	def getStrand2(self,read1minus,read2minus):
 		strand2 = ''
-		if "," in read1minus or read2minus:
-			pass
 		if read1minus and read2minus:
-			r1m = int(read1minus)
-			r2m = int(read2minus)
-			strand2 = str(r1m + r2m)
+			if "," in read1minus or "," in read2minus:
+				pass
+			else:
+				r1m = int(read1minus)
+				r2m = int(read2minus)
+				strand2 = str(r1m + r2m)
 		return strand2
-			
-	'''
-	def getStrand2(self,read1minus,read2minus):
-		strand2 = ''
-		if read1minus and read2minus :
-			r1m = int(read1minus.split(",")[0])
-			r2m = int(read2minus.split(",")[0])
-			strand2 = str(r1m + r2m)
-		return strand2
-	'''
 
 	def getQual1(self,info_dict):
 		qual1 = ''
@@ -259,7 +249,7 @@ class InfoVCF(object):
 		mapqual2name =['MQM'] 
 		for key in mapqual2name:
 			if key in info_dict:
-				mapqual2name = info_dict[key]
+				mapqual2 = info_dict[key]
 				break
 		return mapqual2
 
