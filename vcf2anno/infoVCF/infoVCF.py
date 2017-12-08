@@ -256,10 +256,12 @@ class InfoVCF(object):
 
 
 
-
+"""
 if __name__ == '__main__':
 	import sys
 	vcf = sys.argv[1]
 	prefix = sys.argv[2]	
 	iv = InfoVCF(vcf, prefix)
 	iv.get_vcf_info()
+"""
+
