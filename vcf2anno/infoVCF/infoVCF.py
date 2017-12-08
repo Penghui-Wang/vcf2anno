@@ -8,7 +8,7 @@ class InfoVCF(object):
 	def get_vcf_info(self):
 		lines = open(self.vcf).readlines()
 		out = self.prefix + ".vars.info"
-		avi = self.prefix + ".avi"
+		avi = self.prefix + ".avinput"
 		fho = open(out,'w')
 		fha = open(avi,'w')
 		head = "\t".join(['Chr','Start','End','Ref','Alt','Read1','Read2','VarFreq','Strand1','Strand2','Qual','Qual1','Qual2','Pvalue','MapQual1','MapQual2','Read1plus','Read1minus','Read2plus','Read2minus','Zygosity','Cons','VarType','Depth']) + "\n"
@@ -48,6 +48,7 @@ class InfoVCF(object):
 			
 			
 		fho.close()
+		fha.close()
 
 	def get_format_info(self,infostr,formatstr,samples):		
 		info_dict = {}

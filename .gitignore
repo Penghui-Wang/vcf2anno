@@ -1,5 +1,5 @@
 *.pyc
-*.swap
+*.swp
 vcf2anno/config.py
 *.log
 tests/*
