@@ -63,10 +63,10 @@ class AnnoVCF:
 		return outFile
 
 
-	def anno_multidb(self,db_list):
+	def anno_multidb(self,db_list):#all the database should be in the same dictionary
 		cmd = "%s %s --remove -buildver %s %s -protocol " % (table_annovar, self.avinput,self.species,self.db_path)
 		ope_list = []
-		for i in range(len(self.db)):
+		for i in range(len(db_list)):
 			if db_list[i] in self.genedb_list:
 				ope_list.append('g')
 			elif db_list[i] in self.regiondb_list:
