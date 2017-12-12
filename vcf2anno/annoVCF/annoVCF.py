@@ -63,19 +63,6 @@ class AnnoVCF:
 		return outFile
 
 
-	
-'''	def anno_alldb(self):
-		cmd = "%s %s --remove -buildver %s %s -protocol " % (table_annovar, self.avinput,self.species,human_db)
-		cmd += ','.join(self.genedb_list) +',' + ','.join(self.regiondb_list)+','+ ','.join(self.filterdb_list)
-		cmd += ' -operation ' + ','.join(['g']*len(self.genedb_list)) + ',' + ','.join(['r']*len(self.regiondb_list)) + ',' + ','.join(['f']*len(self.filterdb_list))
-		cmd += ' -nastring . --outfile %s -csvout' % (self.prefix + '.multianno')
-		print cmd
-		os.system(cmd)
-		outFile = self.prefix + '.multianno' + self.species + '_multianno.csv'
-		return outFile	'''
-	
-
-
 	def anno_multidb(self,db_list):
 		cmd = "%s %s --remove -buildver %s %s -protocol " % (table_annovar, self.avinput,self.species,self.db_path)
 		ope_list = []
