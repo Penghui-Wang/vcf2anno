@@ -6,11 +6,11 @@ import os
 
 class AnnoVCF:
 		
-	def __init__(self,avinput,species,anno_db,prefix):
+	def __init__(self,avinput,dbpath,prefix):
 		self.avinput = avinput
-		self.species = species
+		self.species = os.path.split(dbpath)[1]
 		self.prefix = prefix
-		self.db_path = os.path.join(anno_db,self.species)
+		self.db_path = dbpath
 		self.genedb = os.path.join(self.db_path,"gene_based")
 		self.regiondb = os.path.join(self.db_path,"region_based")
 		self.filterdb = os.path.join(self.db_path,"filter_based")
