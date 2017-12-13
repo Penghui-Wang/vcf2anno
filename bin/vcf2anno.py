@@ -1,34 +1,42 @@
 #coding:utf-8
 import sys,os
 import argparse
+abspath = os.path.abspath(__file__)
+absdir = os.path.dirname(abspath)
+vcfpath = os.path.join(absdir,'../vcf2anno')
+sys.path.append(vcfpath)
 
-from vcf2anno.fmtvcf import fmtvcf
-from vc.....
-
-
-usage = """
-		python vcf2anno.py -i vcf -db dppath -out prefix
-	
-				--help			-h	usage;
-			[Required]
-				--input			-i	input vcf file;
-				--dbpath		-db	path of all the database;
-				--prefix		-p	prefix;
-			[Optional]
-				--annodb		-ad	wanted annonotaed database
+from fmtVCF.fmtVCF import fmtVCF
+from infoVCF.infoVCF import InfoVCF
+from annoVCF.annoVCF import AnnoVCF
+from annoVCF.mergeTables import mergeTables
 
 
-"""
+parser = argparse.ArgumentParser()
+parser.add_argument('--inputvcf','-i',help ='input vcf file' )
+parser.add_argument('--dbpath','-db',help = 'path of all the database')
+parser.add_argument('--prefix','-p',help = 'prefix')
+parser.parse_args()
+
 def vcf2anno(vcf,dbpath,prefix):
-
-    fvcf = fmtvcf(vcf,prefix)
-    pass
-
-    return xls
-
+	fvcf = fmtVCF(vcf,prefix)
+	iv = InfoVCF(fvcf,prefix)
+	avinput,invcf = iv.get_vcf_info()
+	anvcf = AnnoVCF(avinput,dbpath,prefix)
+	genebase_out = anvcf.gene_based()
+	regionbase_out = anvcf.region_based()
+	filterbase_out = anvcf.filter_based()
+	file_list = [invcf,genebase_out,regionbase_out,filterbase_out]
+	xls = mergeTables(prefix,file_list)
+	print xls
+	return xls
 
 
 if __name__ == "__main__":
-    parse_args(sys.argv[1:])
-    
+	if len(sys.argv) is 1:
+		parser.print_help()
+	else:
+		parmet = parser.parse_args(sys.argv[1:])
+		anvcf = vcf2anno(parmet.inputvcf,parmet.dbpath,parmet.prefix)
+	
 

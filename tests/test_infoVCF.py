@@ -4,7 +4,8 @@ from vcf2anno.infoVCF.infoVCF import InfoVCF
 
 
 vcf = "mutect.freebayes.breakmulti.vcf"
-prex = "mutect"
+prex = "returntest"
 
 iv = InfoVCF(vcf,prex)
-iv.get_vcf_info()
+avi,inv = iv.get_vcf_info()
+print avi,inv

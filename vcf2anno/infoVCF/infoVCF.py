@@ -49,6 +49,7 @@ class InfoVCF(object):
 			
 		fho.close()
 		fha.close()
+		return avi,out
 
 	def get_format_info(self,infostr,formatstr,samples):		
 		info_dict = {}
