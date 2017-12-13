@@ -65,7 +65,7 @@ class AnnoVCF:
 
 	def anno_multidb(self,db_list):
 	#all the database should be in the same dictionary and well-classified
-		cmd = "%s %s --remove -buildver %s %s -protocol " % (table_annovar, self.avinput,self.species,self.db_path)
+		cmd = "%s %s --remove -buildver %s %s -protocol " % (table_annovar, self.avinput,self.species,self.db_path)i#db_path cotain different databases
 		ope_list = []
 		for i in range(len(db_list)):
 			if db_list[i] in self.genedb_list:
@@ -83,6 +83,3 @@ class AnnoVCF:
 		os.system(cmd)
 		outFile = self.prefix + '.multianno' + self.species + '_multianno.txt'
 		return outFile
-
-
-
