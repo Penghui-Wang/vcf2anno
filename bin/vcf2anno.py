@@ -28,7 +28,6 @@ def vcf2anno(vcf,dbpath,prefix):
 	filterbase_out = anvcf.filter_based()
 	file_list = [invcf,genebase_out,regionbase_out,filterbase_out]
 	xls = mergeTables(prefix,file_list)
-	print xls
 	return xls
 
 
@@ -38,5 +37,6 @@ if __name__ == "__main__":
 	else:
 		parmet = parser.parse_args(sys.argv[1:])
 		anvcf = vcf2anno(parmet.inputvcf,parmet.dbpath,parmet.prefix)
+		print anvcf
 	
 
