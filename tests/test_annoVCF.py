@@ -1,23 +1,25 @@
 #python
 import sys
 sys.path.append("../")
-from vcf2anno.config import human_db,table_annovar,anno_db
+from vcf2anno.config import table_annovar#,anno_db,human_db
 from vcf2anno.annoVCF.annoVCF import AnnoVCF
 
-anno_db = "/lustre/users/yangrui/anno_db"
+#anno_db = "/lustre/users/yangrui/anno_db"
 dbpath = "/lustre/users/yangrui/anno_db/hg19"
 prefix = "multianndb"
-species = "hg19"
+#species = "hg19"
 avinput = "mutect.avinput"
 db = ['dbsnp','wgRna']
 test = AnnoVCF(avinput,dbpath,prefix)
-#testgenebase = test.gene_based()
-#testrgbase = test.region_based()#complete
+#testgenebase = test.gene_based()#complete
+testrgbase = test.region_based()#complete
 #testfilbase = test.filter_based()#complete
 #testselectdb = test.single_db() #complete
 #testall = test.anno_alldb()#complete
-testmultidb = test.anno_multidb(db)#uncomplete
-#print testgenebase, testrgbase, testfilbase
+#testmultidb = test.anno_multidb(db)#uncomplete
+#print testgenebase, 
+print testrgbase
+#print  testfilbase
 #print testselectdb
 #print testall
-print testmultidb
+#print testmultidb

@@ -63,7 +63,8 @@ class AnnoVCF:
 		return outFile
 
 
-	def anno_multidb(self,db_list):#all the database should be in the same dictionary
+	def anno_multidb(self,db_list):
+	#all the database should be in the same dictionary and well-classified
 		cmd = "%s %s --remove -buildver %s %s -protocol " % (table_annovar, self.avinput,self.species,self.db_path)
 		ope_list = []
 		for i in range(len(db_list)):
