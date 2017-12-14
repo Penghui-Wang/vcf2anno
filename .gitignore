@@ -4,3 +4,4 @@ vcf2anno/config.py
 *.log
 tests/*
 !tests/*.py
+tests/__pycache__
