@@ -4,10 +4,10 @@ from vcf2anno.infoVCF.infoVCF import InfoVCF
 
 def test_invcf():
 	vcf = "data/mutect.freebayes.breakmulti.vcf"
-	prex = "data/returntest"
+	prex = "returntest"
 	iv = InfoVCF(vcf,prex)
 	avi,inv = iv.get_vcf_info()
-	assert avi,inv ==("data/returntest.avinput","data/returntest.vars.info")
+	assert avi,inv ==("returntest.avinput","returntest.vars.info")
 
 if __name__ == "__main__":
 	pytest.test_invcf()

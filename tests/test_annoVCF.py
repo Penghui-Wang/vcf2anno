@@ -6,7 +6,7 @@ from vcf2anno.annoVCF.annoVCF import AnnoVCF
 
 def test_main():
 	dbpath = "/lustre/users/yangrui/anno_db/hg19"
-	prefix = "data/multianndb"
+	prefix = "multianndb"
 	avinput = "data/mutect.avinput"
 	test = AnnoVCF(avinput,dbpath,prefix)
 	testgenebase = test.gene_based()
@@ -15,7 +15,7 @@ def test_main():
 	print testrgbase
 	testfilbase = test.filter_based()
 	print  testfilbase
-	assert (testgenebase,testrgbase,testfilbase) == ("data/multianndb.Genebased.hg19_multianno.txt","data/multianndb.Regionbased.hg19_multianno.txt","data/multianndb.Filterbased.hg19_multianno.txt")
+	assert (testgenebase,testrgbase,testfilbase) == ("multianndb.Genebased.hg19_multianno.txt","multianndb.Regionbased.hg19_multianno.txt","multianndb.Filterbased.hg19_multianno.txt")
 	#testmultidb = test.anno_multidb(db)
 	#print testmultidb
 
