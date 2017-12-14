@@ -2,7 +2,11 @@ import sys
 sys.path.append("../")
 from vcf2anno.fmtVCF.fmtVCF import fmtVCF
 
-vcf = "/lustre/users/yangrui/devwork/fastq2vcf/tests/mutect.freebayes.vcf"
-prex = "mutect.freebayes"
+def test_fmtvcf():
+	vcf = "/lustre/users/yangrui/devwork/fastq2vcf/tests/mutect.freebayes.vcf"
+	prex = "data/mutect.freebayes"
+	fmt = fmtVCF(vcf,prex)
+	assert fmt == "data/mutect.freebayes.left.vcf"
 
-fmtVCF(vcf,prex) 
+if __name__ == "__main__":
+	pytest.test_fmtvcf()
