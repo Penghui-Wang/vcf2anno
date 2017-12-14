@@ -11,7 +11,9 @@ from infoVCF.infoVCF import InfoVCF
 from annoVCF.annoVCF import AnnoVCF
 from annoVCF.mergeTables import mergeTables
 
-
+'''
+	Add the needed parmeter
+'''
 parser = argparse.ArgumentParser()
 parser.add_argument('--inputvcf','-i',help ='input vcf file' )
 parser.add_argument('--dbpath','-db',help = 'path of all the database')

@@ -7,6 +7,14 @@ import os
 class AnnoVCF:
 		
 	def __init__(self,avinput,dbpath,prefix):
+		"""init annovcf class
+		Args:
+			avinput(str): the input avi file
+			prefix(str): the output prefix
+		Returns:
+			init this class
+
+		"""
 		self.avinput = avinput
 		self.species = os.path.split(dbpath)[1]
 		self.prefix = prefix
@@ -32,6 +40,12 @@ class AnnoVCF:
 
 
 	def gene_based(self):
+		"""anno the input avifile by gene_based
+		Args:
+			None
+		Returns:
+			outfile(str):gene_based annoed output file
+		"""
 		cmd = "%s %s --remove -buildver %s %s -protocol " % (table_annovar, self.avinput,self.species, self.genedb)
 		cmd += ','.join(self.genedb_list)
 		cmd += ' -operation '+','.join(['g']*len(self.genedb_list))
@@ -42,6 +56,12 @@ class AnnoVCF:
 		return outFile
 	
 	def region_based(self):
+		"""anno the input avifile by region_based
+		Args:
+			None
+		Returns:
+			outfile(str):region_based annoed output file
+		"""
 		cmd = "%s %s --remove -buildver %s %s -protocol " % (table_annovar, self.avinput,self.species, self.regiondb)
 		cmd += ','.join(self.regiondb_list)
 		cmd += ' -operation '+','.join(['r']*len(self.regiondb_list))
@@ -53,6 +73,12 @@ class AnnoVCF:
 
 
 	def filter_based(self):
+		"""anno the input avifile by filter_based
+		Args:
+			None
+		Returns:
+			outfile(str):filtered_based annoed output file
+		"""
 		cmd = "%s %s --remove -buildver %s %s -protocol " % (table_annovar, self.avinput,self.species,self.filterdb)
 		cmd += ','.join(self.filterdb_list)
 		cmd += ' -operation '+','.join(['f']*len(self.filterdb_list))
@@ -64,6 +90,12 @@ class AnnoVCF:
 
 
 	def anno_multidb(self,db_list):
+		"""anno the input avifile by different database
+		Args:
+			db_list(list): different database
+		Returns:
+			outfile(str):differentdb_based annoed output file
+		"""
 	#all the database should be in the same dictionary and well-classified
 		cmd = "%s %s --remove -buildver %s %s -protocol " % (table_annovar, self.avinput,self.species,self.db_path)#db_path cotain different databases
 		ope_list = []
