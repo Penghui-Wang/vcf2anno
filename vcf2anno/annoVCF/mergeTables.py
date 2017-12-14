@@ -1,3 +1,7 @@
+#!/bin/python
+#coding:utf-8
+__author__ = 'PH.Wang'
+
 def mergeTables(prefix,file_list):
 #merge annoed tables,did not take different situation into account
 	files = []

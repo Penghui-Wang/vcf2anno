@@ -1,4 +1,6 @@
+#!/bin/python2.7
 # cofing:utf-8
+__author__ = 'PH.Wang'
 
 import sys
 from config import table_annovar

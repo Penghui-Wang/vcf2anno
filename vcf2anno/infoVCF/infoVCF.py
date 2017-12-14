@@ -1,4 +1,6 @@
+#!/bin/python2.7
 #coding: utf-8
+__author__ = 'PH.Wang'
 
 class InfoVCF(object):
 	def __init__(self,vcf,prefix):

@@ -1,4 +1,7 @@
+#!/bin/python2.7
 #coding:utf-8
+__author__ = 'PH.Wang'
+
 import sys,os
 import argparse
 abspath = os.path.abspath(__file__)
