@@ -1,7 +1,0 @@
-
-
-
-def aviVCF():
-    pass
-
-
