@@ -5,3 +5,9 @@ vcf2anno/config.py
 tests/*
 !tests/*.py
 tests/__pycache__
+*.png
+*.js
+*.html
+*.inv
+*.css
+*.gif
