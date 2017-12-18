@@ -3,6 +3,11 @@
 __author__ = 'PH.Wang'
 
 def mergeTables(prefix,file_list):
+	"""merge the annoed tables\n
+	Args:\n
+	\tprefix(str):the output file prefix\n
+	\tfile_list(list):input files
+	"""
 #merge annoed tables,did not take different situation into account
 	files = []
 	outfile = prefix + ".merged.txt"

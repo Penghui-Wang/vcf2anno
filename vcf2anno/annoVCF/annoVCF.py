@@ -9,13 +9,12 @@ import os
 class AnnoVCF:
 		
 	def __init__(self,avinput,dbpath,prefix):
-		"""init annovcf class
-		Args:
-			avinput(str): the input avi file
-			prefix(str): the output prefix
-		Returns:
-			init this class
-
+		"""init annovcf class.\n
+		Args:\n
+		\tavinput(str): the input avi file.\n
+		\tprefix(str): the output prefix.\n
+		Returns:\n
+		\tinit this class.\n
 		"""
 		self.avinput = avinput
 		self.species = os.path.split(dbpath)[1]
@@ -42,11 +41,9 @@ class AnnoVCF:
 
 
 	def gene_based(self):
-		"""anno the input avifile by gene_based
-		Args:
-			None
-		Returns:
-			outfile(str):gene_based annoed output file
+		"""anno the input avifile by gene_based.\n
+		Returns:\n
+		\toutfile(str):gene_based annoed output file.\n
 		"""
 		cmd = "%s %s --remove -buildver %s %s -protocol " % (table_annovar, self.avinput,self.species, self.genedb)
 		cmd += ','.join(self.genedb_list)
@@ -56,13 +53,11 @@ class AnnoVCF:
 		os.system(cmd)
 		outFile = self.prefix + '.Genebased.' + self.species + '_multianno.txt'
 		return outFile
-	
+
 	def region_based(self):
-		"""anno the input avifile by region_based
-		Args:
-			None
-		Returns:
-			outfile(str):region_based annoed output file
+		"""anno the input avifile by region_based.\n
+		Returns:\n
+		\toutfile(str):region_based annoed output file.
 		"""
 		cmd = "%s %s --remove -buildver %s %s -protocol " % (table_annovar, self.avinput,self.species, self.regiondb)
 		cmd += ','.join(self.regiondb_list)
@@ -75,11 +70,9 @@ class AnnoVCF:
 
 
 	def filter_based(self):
-		"""anno the input avifile by filter_based
-		Args:
-			None
-		Returns:
-			outfile(str):filtered_based annoed output file
+		"""anno the input avifile by filter_based.\n
+		Returns:\n
+		\toutfile(str):filtered_based annoed output file.
 		"""
 		cmd = "%s %s --remove -buildver %s %s -protocol " % (table_annovar, self.avinput,self.species,self.filterdb)
 		cmd += ','.join(self.filterdb_list)
@@ -92,14 +85,15 @@ class AnnoVCF:
 
 
 	def anno_multidb(self,db_list):
-		"""anno the input avifile by different database
-		Args:
-			db_list(list): different database
-		Returns:
-			outfile(str):differentdb_based annoed output file
+		"""anno the input avifile by different databases.\n
+		Args:\n
+		\tdb_list(list): different database.\n
+		Returns:\n
+		\toutfile(str):differentdb_based annoed output file.
 		"""
-	#all the database should be in the same dictionary and well-classified
-		cmd = "%s %s --remove -buildver %s %s -protocol " % (table_annovar, self.avinput,self.species,self.db_path)#db_path cotain different databases
+		#all the database should be in the same dictionary and well-classified
+		cmd = "%s %s --remove -buildver %s %s -protocol " % (table_annovar, self.avinput,self.species,self.db_path)
+		#db_path cotain different databases
 		ope_list = []
 		for i in range(len(db_list)):
 			if db_list[i] in self.genedb_list:
@@ -117,3 +111,5 @@ class AnnoVCF:
 		os.system(cmd)
 		outFile = self.prefix + '.multianno' + self.species + '_multianno.txt'
 		return outFile
+
+

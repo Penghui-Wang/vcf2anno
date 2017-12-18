@@ -108,32 +108,3 @@ def fmtVCF(vcf,prefix):
     return vcf
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    
-
-
