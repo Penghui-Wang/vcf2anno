@@ -3,6 +3,12 @@
 __author__ = 'PH.Wang'
 
 class InfoVCF(object):
+	"""A set of calls at a site.  Equivalent to a row in a VCF file.
+
+	   The standard VCF fields CHROM, POS, ID, REF, ALT, QUAL, FILTER,
+	   INFO and FORMAT are available as properties.
+
+	   The list of genotype calls is in the ``samples`` property."""
 	def __init__(self,vcf,prefix):
 		self.vcf = vcf
 		self.prefix = prefix
