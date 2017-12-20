@@ -4,8 +4,8 @@
    contain the root `toctree` directive.
 
 .. image:: https://readthedocs.org/projects/vcf2anno/badge/?version=lates
-       :target: http://vcf2anno.readthedocs.io/en/latest/?badge=latest
-    :alt: Documentation Status
+   :target: http://vcf2anno.readthedocs.io/en/latest/?badge=latest
+   :alt: Documentation Status
 
 Welcome to vcf2anno's documentation!
 ====================================
