@@ -10,6 +10,10 @@ Welcome to vcf2anno's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+.. image:: https://readthedocs.org/projects/vcf2anno/badge/?version=lates
+    :target: http://vcf2anno.readthedocs.io/en/latest/?badge=latest
+    :alt: Documentation Status
+
 vcf2anno is a quick tool that user the annovar to annotate the vcf files.The main process:
 
 * format the vcf file to normal.
