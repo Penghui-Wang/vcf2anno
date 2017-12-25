@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #coding: utf-8
 
-form setuptools import setup
+from setuptools import setup
 
 setup(
 	name = 'vcf2anno',
@@ -13,6 +13,9 @@ setup(
 	packages = ['vcf2anno'],
 	install_requires = [],
 	entry_points = {
-		''
-	}
+		'console_scripts':[
+            'anno = test_for_travis:AnnoVCF',
+            'fmt = test_for_travis:fmtVCF'
+        ]
+   	}
 )
