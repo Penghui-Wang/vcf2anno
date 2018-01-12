@@ -8,4 +8,6 @@ tests/__pycache__
 docs/_build
 docs/_static
 docs/_templates
-
+vcf2anno.egg-info/
+dist/
+.cache/
