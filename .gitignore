@@ -1,6 +1,6 @@
 *.pyc
 *.swp
-vcf2anno/config.py
+#vcf2anno/config.py
 *.log
 tests/*
 !tests/*.py
