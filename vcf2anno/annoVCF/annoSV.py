@@ -88,7 +88,7 @@ def formatAnnoResult(aviFile,annoFile,prefix):
         line22 = an[i+2].strip('\n').split('\t')
         gene1, region1 = line2[6],line2[5]
         gene2, region2 = line22[6], line22[5]
-        fout.write('\t'.join([chrom1, pos1, gene1, region1, chrom2, pos2, gene2, region2, '0', '0', total]))
+        fout.write('\t'.join([chrom1, pos1, gene1, region1, chrom2, pos2, gene2, region2, '-', '-', total]))
         fout.write('\n')
     fout.close()
     return outFile
