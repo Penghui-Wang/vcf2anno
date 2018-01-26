@@ -3,24 +3,15 @@
 __author__ = 'PH.Wang'
 
 import sys,os
-import argparse
 abspath = os.path.abspath(__file__)
 absdir = os.path.dirname(abspath)
 vcfpath = os.path.join(absdir,'../vcf2anno')
 sys.path.append(vcfpath)
+
 from fmtVCF.fmtVCF import fmtVCF
 from infoVCF.infoVCF import InfoVCF
 from annoVCF.annoVCF import AnnoVCF
 from annoVCF.mergeTables import mergeTables
-
-'''
-	Add the needed parmeter
-'''
-parser = argparse.ArgumentParser()
-parser.add_argument('--inputvcf','-i',help ='input vcf file' )
-parser.add_argument('--dbpath','-db',help = 'path of all the database')
-parser.add_argument('--prefix','-p',help = 'prefix')
-parser.parse_args()
 
 def vcf2anno(vcf,dbpath,prefix):
 	fvcf = fmtVCF(vcf,prefix)
@@ -36,11 +27,28 @@ def vcf2anno(vcf,dbpath,prefix):
 
 
 if __name__ == "__main__":
-	if len(sys.argv) is 1:
-		parser.print_help()
-	else:
-		parmet = parser.parse_args(sys.argv[1:])
-		anvcf = vcf2anno(parmet.inputvcf,parmet.dbpath,parmet.prefix)
-		print anvcf
+	usage = '''
+Usage:
+	vcf2anno.py -i <vcf> -d <dbpath> -p <prefix>
+	vcf2anno.py -h | --help
+	vcf2anno.py -v | --version
+
+Options:
+    -h --help                       print usage
+    -v --version                    print version information
+    -i <vcf> --input <vcf>  	    input vcf file
+    -d <dbpath>	--dbpath <dbpath>	annoed dbpath
+    -p <prefix> --pref <prefix>		output prefix
+'''
+
+	from docopt import docopt
+	args = docopt(usage)
+	print args
+	vcf = args["--input"]
+	prefix = args["--pref"]
+	dbpath = args["--dbpath"]
+	print vcf,prefix,dbpath
+	result = vcf2anno(vcf,dbpath,prefix)
+
 	
 
