@@ -29,7 +29,7 @@ def vcf2anno(vcf,dbpath,prefix):
 if __name__ == "__main__":
 	usage = '''
 Usage:
-	vcf2anno.py -i <vcf> -d <dbpath> -p <prefix>
+	vcf2anno.py -i <vcf> -db <dbpath> -p <prefix>
 	vcf2anno.py -h | --help
 	vcf2anno.py -v | --version
 
@@ -37,17 +37,15 @@ Options:
     -h --help                       print usage
     -v --version                    print version information
     -i <vcf> --input <vcf>  	    input vcf file
-    -d <dbpath>	--dbpath <dbpath>	annoed dbpath
+    -db <dbpath>	--dbpath <dbpath>	annoed dbpath
     -p <prefix> --pref <prefix>		output prefix
 '''
 
 	from docopt import docopt
 	args = docopt(usage)
-	print args
 	vcf = args["--input"]
 	prefix = args["--pref"]
 	dbpath = args["--dbpath"]
-	print vcf,prefix,dbpath
 	result = vcf2anno(vcf,dbpath,prefix)
 
 	
