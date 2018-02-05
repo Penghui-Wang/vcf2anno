@@ -1,6 +1,7 @@
-#!/usr/lib/python2.7
+#!/usr/bin/env/python2.7
 # coding:utf-8
 __author__ = 'yangrui'
+__update__ = 'PH.Wang'
 
 import sys,os
 from config import table_annovar,human_db
