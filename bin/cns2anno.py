@@ -33,6 +33,7 @@ Options:
 '''
 	from docopt import docopt
 	args = docopt(usage)
+	print args
 	filename = args["--input"]
 	prefix = args["--pref"]
 	result = cnsanno(filename,prefix)
