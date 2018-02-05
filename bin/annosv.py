@@ -11,14 +11,14 @@ sys.path.append(vcfpath)
 from annoVCF.annoSV import breakdancer2avi,annoVCF,formatAnnoResult
 
 def annoSV(brdancerout,prefix):
-	avi = breakdancer2avi(brdancerout,prefix)
-	anno = annoVCF(avi,prefix)
-	result = formatAnnoResult(avi,anno,prefix)
-	return result
+    avi = breakdancer2avi(brdancerout,prefix)
+    anno = annoVCF(avi,prefix)
+    result = formatAnnoResult(avi,anno,prefix)
+    return result
 
 
 if __name__ == '__main__':
-	usage = '''
+    usage = '''
 Usage:
     annoSV.py -i <brdancerout> -p <prefix> 
     annoSV.py -h | --help
@@ -31,9 +31,9 @@ Options:
     -p <prefix> --pref <prefix>     output prefix
 
 '''
-	from docopt import docopt
-	args = docopt(usage)
-	bdout = args["--input"]
-	prefix = args["--pref"]
-	result = annoSV(bdout,prefix)
+    from docopt import docopt
+    args = docopt(usage)
+    bdout = args["--input"]
+    prefix = args["--pref"]
+    result = annoSV(bdout,prefix)
 

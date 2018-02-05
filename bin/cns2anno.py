@@ -11,15 +11,15 @@ sys.path.append(vcfpath)
 from annoVCF.annoCNV import cns2anno,annoVCF,formatAnnoResult,del_anresult
 
 def cnsanno(cns,prefix):
-	avi = cns2anno(cns,prefix)
-	anno = annoVCF(avi,prefix)
-	result = formatAnnoResult(avi,anno,prefix)
-	del_anresult(anno)
-	return result
+    avi = cns2anno(cns,prefix)
+    anno = annoVCF(avi,prefix)
+    result = formatAnnoResult(avi,anno,prefix)
+    del_anresult(anno)
+    return result
 
 
 if __name__ == '__main__':
-	usage = '''
+    usage = '''
 Usage:
     annoCNV.py -i <cnsinput> -p <prefix>
     annoCNV.py -h | --help
@@ -31,10 +31,9 @@ Options:
     -i <cnsinput> --input <cnsinput>  input cnsfile
     -p <prefix> --pref <prefix>       output prefix
 '''
-	from docopt import docopt
-	args = docopt(usage)
-	print args
-	filename = args["--input"]
-	prefix = args["--pref"]
-	result = cnsanno(filename,prefix)
+    from docopt import docopt
+    args = docopt(usage)
+    filename = args["--input"]
+    prefix = args["--pref"]
+    result = cnsanno(filename,prefix)
 

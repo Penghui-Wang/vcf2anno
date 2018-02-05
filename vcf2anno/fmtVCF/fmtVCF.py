@@ -48,7 +48,7 @@ def formatVar(sts,ref,alt):
 
 def breakVcf2(vcf,prefix):
     """seprate the line that cotain more than one alf and
-	   and return two line"""
+       and return two line"""
     out = prefix + ".breakmulti.vcf"
     fpw = open(out,"w")
 
@@ -110,7 +110,7 @@ def leftAlign(vcf,prefix):
 
 def fmtVCF(vcf,prefix):
     """format the input vcf file and return a aligned and
-	   breakmultied vcf file"""
+       breakmultied vcf file"""
     vcf = breakVcf(vcf,prefix)    
     vcf = leftAlign(vcf,prefix)
     return vcf
