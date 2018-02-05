@@ -1,6 +1,7 @@
-#!/usr/lib/python2.7
+#!/usr/bin/env python
 # coding:utf-8
 __author__ = 'yangrui'
+__update__ = 'PH.Wang'
 
 import sys,os
 from config import table_annovar,human_db
@@ -18,7 +19,7 @@ def cns2anno(cnsFile, prefix):
             li = line.split('\t')
             chrom, start, end, log2, cn = li[0],li[1],li[2],li[4],li[5]
             size = int(end)-int(start)+1
-            foldchange = str(math.pow(2, float(log2)))
+            foldchange = cn
             if int(cn) == 2:
                 continue
             if int(cn)>2:
@@ -57,6 +58,17 @@ def formatAnnoResult(infoFile,annoFile, prefix):
         fwp.write('\t'.join([chrom, start, end, size, vartype, log2, foldchange]+[gene_name, region, cytoband, dgvMerged, genomicSuperDups, repeat]))
     fwp.close()
 
+def del_anresult(annoFile):
+    fp = open(annoFile,'r')
+    lines = fp.readlines()
+    os.remove(annoFile)
+    fp = open(annoFile,'w') 
+    for line in lines:
+        items = line.strip('\n').split('\t')
+        outline = '\t'.join([items[0],items[1],items[2]])  +'\t' +'\t'.join(items[5:]) +  '\n'
+        fp.write(outline)
+    fp.close()
+    return annoFile
 
 if __name__ == '__main__':
     usage = '''
@@ -80,3 +92,4 @@ Options:
     avi = cns2anno(filename, prefix)
     anno = annoVCF(avi, prefix)
     formatAnnoResult(avi, anno, prefix)
+    del_anresult(anno)
