@@ -10,10 +10,14 @@ class InfoVCF(object):
 
        The list of genotype calls is in the ``samples`` property."""
     def __init__(self,vcf,prefix):
+        """
+           input a vcf file and the sample prefix
+        """
         self.vcf = vcf
         self.prefix = prefix
 
     def get_vcf_info(self):
+        ''' the main method,get the `vcf` information'''
         lines = open(self.vcf).readlines()
         out = self.prefix + ".vars.info"
         avi = self.prefix + ".avinput"
