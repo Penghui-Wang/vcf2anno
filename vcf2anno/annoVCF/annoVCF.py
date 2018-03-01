@@ -7,22 +7,19 @@ from config import table_annovar
 import os
 
 class AnnoVCF:
-        
+     """Init annovcf class.
+
+        Args:
+
+        avinput(str): the input avi file.
+
+        prefix(str): the output prefix.
+
+        Returns:
+
+        init this class."""
     def __init__(self,avinput,dbpath,prefix):
-
-        """Init annovcf class.
-
-           Args:
-
-           avinput(str): the input avi file.
-
-           prefix(str): the output prefix.
-
-           Returns:
-
-           init this class.
-        """
-
+        
         self.avinput = avinput
         self.species = os.path.split(dbpath)[1]
         self.prefix = prefix
