@@ -7,17 +7,17 @@ from config import table_annovar
 import os
 
 class AnnoVCF:
-     """Init annovcf class.
+    """Init annovcf class.
 
-        Args:
+       Args:
 
-        avinput(str): the input avi file.
+       avinput(str): the input avi file.
 
-        prefix(str): the output prefix.
+       prefix(str): the output prefix.
 
-        Returns:
+       Returns:
 
-        init this class."""
+       init this class."""
     def __init__(self,avinput,dbpath,prefix):
         
         self.avinput = avinput
